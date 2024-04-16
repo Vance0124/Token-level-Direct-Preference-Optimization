@@ -47,7 +47,7 @@ def tdpo_loss(chosen_logps_margin: torch.FloatTensor,
               rejected_logps_margin: torch.FloatTensor,
               chosen_position_kl: torch.FloatTensor,
               rejected_position_kl: torch.FloatTensor,
-              beta: float, alpha: float = 0.5) -> Tuple[torch.FloatTensor, torch.FloatTensor, torch.FloatTensor]:
+              beta: float, alpha: float = 0.5, if_tdpo2: bool = True) -> Tuple[torch.FloatTensor, torch.FloatTensor, torch.FloatTensor]:
     """Compute the TDPO loss for a batch of policy and reference model log probabilities.
 
     Args:
@@ -57,6 +57,7 @@ def tdpo_loss(chosen_logps_margin: torch.FloatTensor,
         rejected_position_kl: The difference of sequential kl divergence between the policy model and the reference model for the rejected responses. Shape: (batch_size,)
         beta: Temperature parameter for the TDPO loss, typically something in the range of 0.1 to 0.5. We ignore the reference model as beta -> 0.
         alpha: Temperature parameter for the TDPO loss, used to adjust the impact of sequential kl divergence.
+        if_tdpo2: Determine whether to use method TDPO2, default is True; if False, then use method TDPO1.
 
     Returns:
         A tuple of two tensors: (losses, rewards).
@@ -69,9 +70,11 @@ def tdpo_loss(chosen_logps_margin: torch.FloatTensor,
 
     chosen_rejected_logps_margin = chosen_logps_margin - rejected_logps_margin
 
-    # logits = chosen_rejected_logps_margin + alpha * (chosen_position_kl - rejected_position_kl)   # tdpo1
 
-    logits = chosen_rejected_logps_margin + alpha * (chosen_position_kl.detach() - rejected_position_kl)  # tdpo2
+    if not if_tdpo2:
+        logits = chosen_rejected_logps_margin + chosen_position_kl - rejected_position_kl   # tdpo1
+    else:
+        logits = chosen_rejected_logps_margin + alpha * (chosen_position_kl.detach() - rejected_position_kl)  # tdpo2
     losses = -F.logsigmoid(beta * logits)
 
     chosen_rewards = beta * chosen_values.detach()
@@ -294,7 +297,7 @@ class BasicTrainer(object):
                 = self.tdpo_concatenated_forward(self.policy, self.reference_model, batch)
             losses, chosen_rewards, rejected_rewards = tdpo_loss(chosen_logps_margin, rejected_logps_margin,
                                                                  chosen_position_kl, rejected_position_kl,
-                                                                 beta=loss_config.beta, alpha=loss_config.alpha)
+                                                                 beta=loss_config.beta, alpha=loss_config.alpha, if_tdpo2=loss_config.if_tdpo2)
 
             reward_accuracies = (chosen_rewards > rejected_rewards).float()
 

@@ -1,5 +1,6 @@
 # do TDPO preference-based training
 name: tdpo
+if_tdpo2: true
 
 # the temperature parameter for TDPO; lower values mean we care less about
 #   the reference model
