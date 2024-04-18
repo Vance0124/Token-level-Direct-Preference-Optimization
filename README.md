@@ -21,7 +21,7 @@ The files in this repo are:
 
 ## A complete example
 
-
+Let's work through a complete example training pythia 2.8B on the Anthropic-HH dataset.
 
 ### Step 1: Set up environment
 
@@ -52,6 +52,8 @@ python -u train.py model=pythia28 datasets=[hh] loss=tdpo loss.alpha=0.5 loss.be
 ~~~
 
 
+
+We have provided wandb's training curve [here](https://wandb.ai/492277267/tdpo_demos).
 
 
 
