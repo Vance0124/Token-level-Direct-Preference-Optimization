@@ -72,9 +72,9 @@ def tdpo_loss(chosen_logps_margin: torch.FloatTensor,
 
 
     if not if_tdpo2:
-        logits = chosen_rejected_logps_margin + chosen_position_kl - rejected_position_kl   # tdpo1
+        logits = chosen_rejected_logps_margin - (rejected_position_kl - chosen_position_kl)    # tdpo1
     else:
-        logits = chosen_rejected_logps_margin + alpha * (chosen_position_kl.detach() - rejected_position_kl)  # tdpo2
+        logits = chosen_rejected_logps_margin - alpha * (rejected_position_kl - chosen_position_kl.detach())  # tdpo2
     losses = -F.logsigmoid(beta * logits)
 
     chosen_rewards = beta * chosen_values.detach()
