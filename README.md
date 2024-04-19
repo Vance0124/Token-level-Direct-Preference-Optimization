@@ -1,6 +1,6 @@
 # TDPO: Token-level Direct Preference Optimization
 
-This repo contains a reference implementation of the TDPO algorithm for training language models from preference data, as described in the paper _Token-level Direct Preference Optimization_. Our implementation is based on [DPO](https://github.com/eric-mitchell/direct-preference-optimization), and follows the same usage guidelines.
+This repo contains a reference implementation of the TDPO algorithm for training language models from preference data, as described in the paper [_Token-level Direct Preference Optimization_](https://arxiv.org/pdf/2404.11999.pdf). Our implementation is based on [DPO](https://github.com/eric-mitchell/direct-preference-optimization), and follows the same usage guidelines.
 
 
 
