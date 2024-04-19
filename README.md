@@ -1,21 +1,30 @@
 # TDPO: Token-level Direct Preference Optimization
 
-## What is this repo?
-
 This repo includes a reference implementation of the TDPO algorithm for training language models from preference data, as described in the paper _Token-level Direct Preference Optimization_, which is built upon the implementation of [DPO](https://github.com/eric-mitchell/direct-preference-optimization). We have made partial modifications based on [DPO](https://github.com/eric-mitchell/direct-preference-optimization), and the specific usage method remains consistent with [DPO](https://github.com/eric-mitchell/direct-preference-optimization).
 
-The code here supports any causal HuggingFace model- look at our examples in `config/model` to add your own. Adding your own datasets is also easy. See [the README section](https://github.com/huggingface/peft) on adding datasets.
+
+
+Our implementation is based on [DPO](https://github.com/eric-mitchell/direct-preference-optimization), and follows the same usage guidelines.
+
+
 
 The TDPO pipeline has two stages:
 
 1. Run supervised fine-tuning (SFT) on the dataset(s) of interest.
 2. Run preference learning on the model from step 1, using preference data (ideally from the same distribution as the SFT examples).
 
+
+
 The files in this repo are:
+
 - `train.py`: the main entry point for training (either SFT or TDPO preference-based training)
 - `trainers.py`: the trainer classes (e.g., implementing the loop of learning as well as multi-GPU logic)
 - `utils.py`: some convenience functions used by multiple other files
 - `preference_datasets.py`: dataset processing logic for both SFT and TDPO preference-based training; **this is where you'll need to make some additions to train on your own data**
+
+
+
+The code here supports any causal HuggingFace model- look at our examples in `config/model` to add your own. Adding your own datasets is also easy. See [the README section](https://github.com/huggingface/peft) on adding datasets.
 
 
 
@@ -59,10 +68,22 @@ We have provided wandb's training curve [here](https://wandb.ai/492277267/tdpo_d
 
 ## Acknowledgements
 
-Many thanks to the contributors of [DPO](https://github.com/eric-mitchell/direct-preference-optimization) for their valuable contributions to the RLHF community. **For more detailed information, please refer to the  [DPO](https://github.com/eric-mitchell/direct-preference-optimization).**
+Many thanks to the contributors of [DPO](https://github.com/eric-mitchell/direct-preference-optimization) for their valuable contributions to the RLHF community. For more detailed information, please refer to the  [DPO](https://github.com/eric-mitchell/direct-preference-optimization).
 
 
 
 ## Citing TDPO
 
 If TDPO or this repository is useful in your own research, you can use the following BibTeX entry:
+
+~~~
+@misc{zeng2024tokenlevel,
+      title={Token-level Direct Preference Optimization}, 
+      author={Yongcheng Zeng and Guoqing Liu and Weiyu Ma and Ning Yang and Haifeng Zhang and Jun Wang},
+      year={2024},
+      eprint={2404.11999},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+~~~
+
