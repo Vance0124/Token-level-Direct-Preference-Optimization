@@ -4,7 +4,9 @@ This repo contains a reference implementation of the TDPO algorithm for training
 
 
 
-<img src="figs/TDPO_vs_DPO.png" alt="Comparison of Loss Functions for $\mathrm{DPO}$, $\mathrm{TDPO}_1$ and $\mathrm{TDPO}_2$ Methods." style="width:80%;">
+<div style="text-align:center;">
+    <img src="figs/TDPO_vs_DPO.png" alt="Comparison of Loss Functions for $\mathrm{DPO}$, $\mathrm{TDPO}_1$ and $\mathrm{TDPO}_2$ Methods." style="width:80%;">
+</div>
 
 
 
