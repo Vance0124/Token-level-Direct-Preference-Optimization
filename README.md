@@ -4,6 +4,10 @@ This repo contains a reference implementation of the TDPO algorithm for training
 
 
 
+<img src="figs/TDPO_vs_DPO.png" alt="Comparison of Loss Functions for $\mathrm{DPO}$, $\mathrm{TDPO}_1$ and $\mathrm{TDPO}_2$ Methods." style="width:70%;">
+
+
+
 The TDPO pipeline has two stages:
 
 1. Run supervised fine-tuning (SFT) on the dataset(s) of interest.
@@ -58,7 +62,11 @@ python -u train.py model=pythia28 datasets=[hh] loss=tdpo loss.alpha=0.5 loss.be
 
 
 
-We have provided wandb's training curve [here](https://wandb.ai/492277267/tdpo_demos).
+We have included the training curve from wandb [here](https://wandb.ai/492277267/tdpo_demos). Additionally, we have also provided the comparison results with **DPO** on the IDMb experiment, as shown below.
+
+![The experiment on IMDb dataset. (a) represents the frontier of expected reward and KL divergence with respect to the reference model. We implemented DPO, $\mathrm{TDPO}_1$, and different versions of $\mathrm{TDPO}_2$ with respect to the parameter $\alpha$. Both $\mathrm{TDPO}_1$ and $\mathrm{TDPO}_2$ outperform DPO in terms of the frontier, with $\mathrm{TDPO}_2$ showing further improvement over $\mathrm{TDPO}_1$. This demonstrates the effectiveness of our analysis and modifications. (b) and (c) present the progression of sequential KL divergence on the preferred and dispreferred responses subset over training steps respectively. (d) illustrates the difference between the sequential KL divergence on the dispreferred responses subset and that on the preferred responses subset throughout the training process, namely $margin=|D_{\mathrm{SeqKL}}({x}, {y}_w;\pi_{\mathrm{ref}}\|\pi_{\theta}) - D_{\mathrm{SeqKL}}({x}, {y}_l;\pi_{\mathrm{ref}}\|\pi_{\theta})|$. $\mathrm{TDPO}_2$ exhibit superior regulation over KL divergence compared to the $\mathrm{TDPO}_1$ and DPO algorithm.](figs/IMDb_experiment.png)
+
+For more experimental details and information, please refer to our paper.
 
 
 
