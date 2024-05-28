@@ -1,6 +1,6 @@
 # TDPO: Token-level Direct Preference Optimization
 
-This repo contains a reference implementation of the TDPO algorithm for training language models from preference data, as described in the paper [_Token-level Direct Preference Optimization_](https://arxiv.org/pdf/2404.11999.pdf). Our implementation is based on [DPO](https://github.com/eric-mitchell/direct-preference-optimization), and follows the same usage guidelines.
+This repo contains a reference implementation of the TDPO algorithm for training language models from preference data, as described in the paper [_Token-level Direct Preference Optimization_](https://arxiv.org/pdf/2404.11999.pdf) (ICML 2024). Our implementation is based on [DPO](https://github.com/eric-mitchell/direct-preference-optimization), and follows the same usage guidelines.
 
 
 
@@ -28,9 +28,9 @@ The code here supports any causal HuggingFace model- look at our examples in `co
 
 
 
-## A complete example
+## Example
 
-Let's work through a complete example training pythia 2.8B on the Anthropic-HH dataset.
+Let's work through a complete example training pythia 2.8B model on the Anthropic-HH dataset.
 
 ### Step 1: Set up environment
 
@@ -78,7 +78,7 @@ Many thanks to the contributors of [DPO](https://github.com/eric-mitchell/direct
 
 ## Citing TDPO
 
-If TDPO or this repository is useful in your own research, you can use the following BibTeX entry:
+If TDPO or this repository is useful in your research, you can use the following BibTeX entry to cite our paper:
 
 ~~~
 @misc{zeng2024tokenlevel,
