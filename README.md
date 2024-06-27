@@ -12,8 +12,10 @@ This repo contains a reference implementation of the TDPO algorithm for training
 
 The TDPO pipeline has two stages:
 
-1. Run supervised fine-tuning (SFT) on the dataset(s) of interest.
-2. Run preference learning on the model from step 1, using preference data (ideally from the same distribution as the SFT examples).
+1. Run supervised fine-tuning (SFT) on the dataset(s) of interest. Generally, $(x, y_w)$ from the preference dataset is directly used as the supervised fine-tuning target.
+2. Run preference learning on the model from step 1, using preference data (ideally from the same distribution as the SFT examples). The dataset is generally composed of $\mathcal{D} = \{(x, y_w, y_l)_i\}_{i=1}^N$, where $x$ represents the prompt, $y_w$ and $y_l$ denote the preferred and dispreferred completion.
+
+During training, we generally train for **one episode** in the **SFT** stage, while in the **RL Fine-tuning** stage, we run **multiple episodes** (e.g., three episodes) to enhance the performance of our algorithm.
 
 
 

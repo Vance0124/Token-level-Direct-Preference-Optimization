@@ -156,7 +156,7 @@ def init_distributed(rank: int, world_size: int, master_addr: str = 'localhost',
 class TemporarilySeededRandom:
     def __init__(self, seed):
         """Temporarily set the random seed, and then restore it when exiting the context."""
-        self.seed = seed
+        self.seed = int(seed)
         self.stored_state = None
         self.stored_np_state = None
 
