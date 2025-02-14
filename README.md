@@ -87,13 +87,11 @@ Many thanks to the contributors of [DPO](https://github.com/eric-mitchell/direct
 If TDPO or this repository is useful in your research, you can use the following BibTeX entry to cite our paper:
 
 ~~~
-@misc{zeng2024tokenlevel,
-      title={Token-level Direct Preference Optimization}, 
-      author={Yongcheng Zeng and Guoqing Liu and Weiyu Ma and Ning Yang and Haifeng Zhang and Jun Wang},
-      year={2024},
-      eprint={2404.11999},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@article{zeng2024token,
+  title={Token-level Direct Preference Optimization},
+  author={Zeng, Yongcheng and Liu, Guoqing and Ma, Weiyu and Yang, Ning and Zhang, Haifeng and Wang, Jun},
+  journal={arXiv preprint arXiv:2404.11999},
+  year={2024}
 }
 ~~~
 
